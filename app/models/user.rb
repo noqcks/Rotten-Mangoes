@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  max_paginates_per 10
 
   has_many :reviews
 

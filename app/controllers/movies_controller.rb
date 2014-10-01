@@ -1,7 +1,12 @@
-class MoviesController < ApplicationController
+  require 'pry'
+  class MoviesController < ApplicationController
   
   def index
-    @movies = Movie.all
+    if params
+      @movies = Movie.search(params[:search])
+    else
+      @movies = Movie.all
+    end
   end
 
   def show

@@ -12,9 +12,20 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def restrict_non_admins
+    unless admin?
+      redirect_to root_path, notice: "You must be an admin to access those pages"
+    end
+  end 
+
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  def admin?
+    @current_user.admin == true if @current_user
+  end
+
+  helper_method :admin?
   helper_method :current_user
 end

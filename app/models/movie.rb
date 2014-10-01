@@ -1,5 +1,7 @@
 class Movie < ActiveRecord::Base
 
+  scope :under90, -> { where(:duration < 90)}
+
   has_many :reviews
 
   validates :title,
@@ -26,6 +28,10 @@ class Movie < ActiveRecord::Base
 
   def review_average
     (reviews.sum(:rating_out_of_ten)/reviews.size) unless (reviews.size == 0)
+  end
+
+  def self.search(query)
+    Movie.where("title like ? OR director like ? OR description like ?", "%#{query}%","%#{query}%", "%#{query}%" )
   end
 
   protected
