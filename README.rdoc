@@ -1,5 +1,5 @@
 Rotten Mangoes
-======== 
+=============
 
 A Rotten Tomatoes clone. An application for movie listings online, built with Rails. Inclues all CRUD functions, with a very simple UI layout.
 
